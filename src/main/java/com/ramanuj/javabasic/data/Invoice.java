@@ -4,6 +4,11 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.concurrent.ThreadLocalRandom;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.ramanuj.javabasic.util.LocalDateDeserializer;
+import com.ramanuj.javabasic.util.LocalDateSerializer;
+
 /**
  * This class will carry information about the invoice
  * 
@@ -25,11 +30,17 @@ public class Invoice implements Serializable, Comparable<Invoice> {
 
 	private Double amountPaid;
 
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate dueDate;
 
 	private String customerName;
 
 	private String status;
+
+	public Invoice() {
+
+	}
 
 	public Invoice(InvoiceBuilder builder) {
 		this.invoiceId = builder.invoiceId;
@@ -44,10 +55,8 @@ public class Invoice implements Serializable, Comparable<Invoice> {
 	@Override
 	public String toString() {
 
-		return String.format(
-				"Id : %d\ninvoiceNumber : %d\nCustomer : %s\nDue : %f\nPaid : %f\nDue Date : %tD\nStatus : %s",
-				this.invoiceId, this.invoiceNumber, this.customerName, this.amountDue, this.amountPaid, this.dueDate,
-				this.status);
+		return String.format("Id : %d\ninvoiceNumber : %d\nCustomer : %s\nDue : %f\nPaid : %f\nDue Date : %tD\nStatus : %s", this.invoiceId,
+				this.invoiceNumber, this.customerName, this.amountDue, this.amountPaid, this.dueDate, this.status);
 	}
 
 	/**
