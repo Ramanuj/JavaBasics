@@ -2,6 +2,8 @@ package com.ramanuj.javabasic.data;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Formatter;
+import java.util.Locale;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -55,8 +57,13 @@ public class Invoice implements Serializable, Comparable<Invoice> {
 	@Override
 	public String toString() {
 
-		return String.format("Id : %d\ninvoiceNumber : %d\nCustomer : %s\nDue : %f\nPaid : %f\nDue Date : %tD\nStatus : %s", this.invoiceId,
-				this.invoiceNumber, this.customerName, this.amountDue, this.amountPaid, this.dueDate, this.status);
+		StringBuilder sb = new StringBuilder();
+
+		String dueDatStr = String.format("%1$tY-%1$tm-%1$te", dueDate);
+		sb.append(String.format("%1$15d %2$15d %3$15.2f %4$15.2f %5$15s %6$15s %7$15s", invoiceId, invoiceNumber, amountDue, amountPaid, dueDatStr,
+				customerName, status));
+
+		return sb.toString();
 	}
 
 	/**
