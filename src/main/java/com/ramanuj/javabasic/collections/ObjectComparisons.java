@@ -9,6 +9,7 @@ import java.util.List;
 import com.ramanuj.javabasic.data.Invoice;
 import com.ramanuj.javabasic.data.comparators.InvoiceAmountDueComparator;
 import com.ramanuj.javabasic.helper.PopulateInvoice;
+import com.ramanuj.javabasic.helper.PrintHelper;
 
 /**
  * @author Ramanuj Srivastava
@@ -28,37 +29,24 @@ public class ObjectComparisons {
 		try {
 			List<Invoice> invoiceList = populateInvoice.getInvoice();
 			System.out.println("Printing list of invoices");
-			for (Invoice invoice : invoiceList) {
-				System.out.println("-----------------");
-				System.out.println(invoice);
-			}
-			System.out.println("");
-			
+			PrintHelper.PrintInvoiceList(invoiceList);
+
 			System.out.println("Sorted according to the Amount Due in ascending order");
-			for (Invoice invoice : invoiceList) {
-				System.out.println(invoice.getCustomerName() + " -> " + invoice.getAmountDue() + " | "
-						+ invoice.getDueDate() + " | " + invoice.getStatus());
-			}
+			PrintHelper.PrintInvoiceList(invoiceList);
 
 			System.out.println(" ");
 			InvoiceAmountDueComparator invoiceAmountDueComparatorDesc = new InvoiceAmountDueComparator(false);
 			Collections.sort(invoiceList, invoiceAmountDueComparatorDesc);
 
 			System.out.println("Sorted according to the Amount Due in descending order");
-			for (Invoice invoice : invoiceList) {
-				System.out.println(invoice.getCustomerName() + " -> " + invoice.getAmountDue() + " | "
-						+ invoice.getDueDate() + " | " + invoice.getStatus() + " | " + invoice.getInvoiceId());
-			}
-			
+			PrintHelper.PrintInvoiceList(invoiceList);
+
 			System.out.println(" ");
 			Collections.sort(invoiceList);
-			
+
 			System.out.println("Sorted according to the Due date");
-			for (Invoice invoice : invoiceList) {
-				System.out.println(invoice.getCustomerName() + " -> " + invoice.getAmountDue() + " | "
-						+ invoice.getDueDate() + " | " + invoice.getStatus() + " | " + invoice.getInvoiceId());
-			}
-			
+			PrintHelper.PrintInvoiceList(invoiceList);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
