@@ -21,7 +21,7 @@ public class PrintHelper {
 	private final static List<String> HEADER_PRODUCT = Arrays.asList("Product ID", "SKU", "Name", "Price", "Retail Price", "Brand", "Rating Avg",
 			"Rating Count", "Inventory Count", "Date Created");
 
-	public static void PrintInvoiceList(List<Invoice> invoiceList) {
+	public static void printInvoiceList(List<Invoice> invoiceList) {
 
 		System.out.printf("\n%1$15s %2$15s %3$15s %4$15s %5$15s %6$15s %7$15s", HEADER_INVOICE.toArray());
 		System.out.print("\n---------------------------------------------------------------------------------------------------------------------\n");
@@ -35,7 +35,7 @@ public class PrintHelper {
 		System.out.println("");
 	}
 
-	public static void PrintProductList(List<Product> productList) {
+	public static void printProductList(List<Product> productList) {
 
 		System.out.printf("\n%1$15s %2$15s %3$50s %4$15s %5$15s %6$25s %7$15s %8$15s %9$15s %10$15s", HEADER_PRODUCT.toArray());
 		System.out.print(
@@ -43,5 +43,6 @@ public class PrintHelper {
 		for (Product product : productList) {
 			System.out.println(product);
 		}
+		System.out.println("");
 	}
 }

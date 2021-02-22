@@ -57,17 +57,33 @@ public class Product implements Serializable {
 	@JsonSerialize(using = LocalDateTimeSerializer.class)
 	@JsonProperty("Date Created")
 	private LocalDateTime dateCreated;
-	
+
 	@Override
 	public String toString() {
 
 		StringBuilder sb = new StringBuilder();
 
 		String dueDatStr = String.format("%1$tY-%1$tm-%1$te", dateCreated);
-		sb.append(String.format("%1$15s %2$15s %3$50s %4$15.2f %5$15.2f %6$25s %7$15.1f %8$15d %9$15d %10$15s", productID, sku, name, price, retailPrice, brand,
-				ratingavg, ratingCount, inventoryCount, dueDatStr));
+		sb.append(String.format("%1$15s %2$15s %3$50s %4$15.2f %5$15.2f %6$25s %7$15.1f %8$15d %9$15d %10$15s", productID, sku, name, price,
+				retailPrice, brand, ratingavg, ratingCount, inventoryCount, dueDatStr));
 
 		return sb.toString();
+	}
+
+	public static int compareByNameThenRating(Product lhs, Product rhs) {
+		if (lhs.name.equals(rhs.name)) {
+			return Double.compare(lhs.ratingavg, rhs.ratingavg);
+		} else {
+			return lhs.name.compareTo(rhs.name);
+		}
+	}
+
+	public static int compareByBrandThenName(Product lhs, Product rhs) {
+		if (lhs.brand.equals(rhs.brand)) {
+			return lhs.name.compareTo(rhs.name);
+		} else {
+			return lhs.brand.compareTo(rhs.brand);
+		}
 	}
 
 	public String getProductID() {

@@ -29,23 +29,23 @@ public class ObjectComparisons {
 		try {
 			List<Invoice> invoiceList = populateInvoice.getInvoice();
 			System.out.println("Printing list of invoices");
-			PrintHelper.PrintInvoiceList(invoiceList);
+			PrintHelper.printInvoiceList(invoiceList);
 
 			System.out.println("Sorted according to the Amount Due in ascending order");
-			PrintHelper.PrintInvoiceList(invoiceList);
+			PrintHelper.printInvoiceList(invoiceList);
 
 			System.out.println(" ");
 			InvoiceAmountDueComparator invoiceAmountDueComparatorDesc = new InvoiceAmountDueComparator(false);
 			Collections.sort(invoiceList, invoiceAmountDueComparatorDesc);
 
 			System.out.println("Sorted according to the Amount Due in descending order");
-			PrintHelper.PrintInvoiceList(invoiceList);
+			PrintHelper.printInvoiceList(invoiceList);
 
 			System.out.println(" ");
 			Collections.sort(invoiceList);
 
 			System.out.println("Sorted according to the Due date");
-			PrintHelper.PrintInvoiceList(invoiceList);
+			PrintHelper.printInvoiceList(invoiceList);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
